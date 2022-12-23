@@ -1,0 +1,296 @@
+2.Design an applet/Application using List components to add names of 10 different cities.
+import java.awt.*;
+
+public class list_2 {
+    public static String[] CITIES = new String[] { "Berlin", "Warsaw", "Oslo", "Madrid", "London",
+            "Amsterdam", "Paris", "Barcelona", "Moscow", "Manchesters" };
+
+    public static void main(String args[]) {
+        Frame frame = new Frame("Cities");
+        frame.setSize(400, 400);
+
+        List citiesList = new List(CITIES.length);
+        for (String city : CITIES) {
+            citiesList.add(city);
+        }
+
+        frame.add(citiesList);
+
+        frame.setVisible(true);
+    }
+}
+
+
+3. WAP to use Border Layout
+import java.awt.*;
+
+class BoderLayoutDemo  {
+
+    BoderLayoutDemo()
+    {
+        Frame f = new Frame("Border layout");
+        f.setLayout(new BorderLayout());
+
+        f.add(new Button("North"), BorderLayout.NORTH);
+        f.add(new Button("South"), BorderLayout.SOUTH);
+        f.add(new Button("East"), BorderLayout.EAST);
+        f.add(new Button("West"), BorderLayout.WEST);
+        f.add(new Button("Center"), BorderLayout.CENTER);
+
+        f.setSize(300, 300);
+
+        f.setVisible(true);
+    }
+    public static void main(String[] args)
+    {
+        
+        new BoderLayoutDemo();
+    }
+}
+
+
+4. WAP which creates Menu of different colors and disable menu item for Black color
+import java.awt.*;
+import java.awt.event.*;
+public class MenuDemo1 extends Frame
+{
+MenuBar mb;
+MenuItem m1,m2,m3,m4;
+Menu mn;
+MenuDemo1()
+{
+setTitle("MenuBar Demo");
+setSize(500,500);
+setLayout(null);
+mn=new Menu("Colours");
+mb=new MenuBar();
+m1=new MenuItem("Red");
+m2=new MenuItem("Yellow");
+m3=new MenuItem("Black");
+m3.setEnabled(false);
+mn.add(m1);
+mn.add(m2);
+mn.add(m3);
+mb.add(mn);
+setMenuBar(mb);
+}
+public static void main(String[] args)
+{
+MenuDemo1 md=new MenuDemo1();
+md.setVisible(true);
+}
+}
+
+
+5. WAP to develop a frame to select the different states of India using JComboBox
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class comboBox extends JFrame {
+    public static final String STATES[] = {
+            "Andhra Pradesh",
+            "Arunachal Pradesh",
+            "Assam",
+            "Bihar",
+            "Chhattisgarh",
+            "Goa",
+            "Gujarat",
+            "Haryana",
+            "Himachal Pradesh",
+            "Jharkhand",
+            "Karnataka",
+    };
+
+    public comboBox() {
+        Container contentPane = this.getContentPane();
+        contentPane.setLayout(new FlowLayout());
+
+        JComboBox comboBox = new JComboBox(STATES);
+
+        JLabel label = new JLabel("You are in ");
+
+        comboBox.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                label.setText("You are in " + comboBox.getSelectedItem());
+            }
+        });
+        // comboBox.getItemListeners()[0].itemStateChanged(null);
+
+        contentPane.add(comboBox);
+        contentPane.add(label);
+    }
+    public static void main(String[] args) {
+        comboBox frame = new comboBox();
+        frame.setSize(600, 400);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+}
+
+6. Develop a program to demonstrate the use of tree component in swing.
+import javax.swing.*;  
+import javax.swing.tree.DefaultMutableTreeNode;  
+public class TreeExample {  
+JFrame f;  
+TreeExample(){  
+    f=new JFrame();   
+    DefaultMutableTreeNode style=new DefaultMutableTreeNode("Style");  
+    DefaultMutableTreeNode color=new DefaultMutableTreeNode("color");  
+    DefaultMutableTreeNode font=new DefaultMutableTreeNode("font");  
+    style.add(color);  
+    style.add(font);  
+    DefaultMutableTreeNode red=new DefaultMutableTreeNode("red");  
+    DefaultMutableTreeNode blue=new DefaultMutableTreeNode("blue");  
+    DefaultMutableTreeNode black=new DefaultMutableTreeNode("black");  
+    DefaultMutableTreeNode green=new DefaultMutableTreeNode("green");  
+    color.add(red); color.add(blue); color.add(black); color.add(green);      
+    JTree jt=new JTree(style);  
+    f.add(jt);  
+    f.setSize(200,200);  
+    f.setVisible(true);  
+}  
+public static void main(String[] args) {  
+    new TreeExample();  
+}}  
+
+7. Develop a program to demonstrate the use of JTable.
+import java.awt.*;
+import javax.swing.*;
+
+public class JTableStudents {
+    public static Object[] HEAD = {
+            "Name", "Percentage", "Grade"
+    };
+    public static Object[][] DATA = new Object[][] {
+            { "Tarunkumar Gatla", "55%", "D" },
+            { "Virat Kohli", "91%", "A" },
+            { "Andrew Tate", "69%", "C+" },
+            { "Cristiano Ronaldo", "100%", "A++" },
+            { "Elon Musk", "34%", "F" }, 
+    };
+
+    public static void main(String args[]) {
+        JFrame frame = new JFrame("JTable Students");
+        frame.setSize(400, 400);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        Container contentPane = frame.getContentPane();
+        contentPane.setLayout(new BorderLayout());
+
+        JTable table = new JTable(DATA, HEAD);
+
+        int v = ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
+        int h = ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
+        JScrollPane jsp = new JScrollPane(table, v, h);
+
+        contentPane.add(jsp, BorderLayout.CENTER);
+
+        frame.setVisible(true);
+    }
+}
+
+
+8. WAP to demonstrate various mouse events using MouseListener and MouseMotionListener interface
+import java.awt.*;  
+import java.awt.event.*;
+
+import javax.swing.JLabel;  
+public class mouse extends Frame implements MouseMotionListener,MouseListener{  
+    JLabel label3 = new JLabel();
+    mouse(){  
+        addMouseMotionListener(this);  
+        addMouseListener(this);
+        label3.setBounds(50,50,300,50);
+        add(label3);
+        setSize(300,300);  
+        setLayout(null);  
+        setVisible(true);  
+    }  
+public void mouseDragged(MouseEvent e) {  
+    Graphics g=getGraphics();  
+    g.setColor(Color.BLUE);  
+    g.fillOval(e.getX(),e.getY(),20,20);  
+}  
+public void mouseMoved(MouseEvent e) {}  
+public void mouseClicked(MouseEvent e)
+{
+    label3.setText("mouse clicked at point:"
+                   + e.getX() + " "
+                   + e.getY());
+}
+public void mousePressed(MouseEvent e) {}  
+public void mouseReleased(MouseEvent e) {}  
+public void mouseEntered(MouseEvent e) {}  
+public void mouseExited(MouseEvent e) {}  
+public static void main(String[] args) {  
+    new mouse();  
+}  
+}  
+
+
+WAP to demonstrate the use of JTextfield and JPasswordField using Listener interface
+import javax.swing.*;  
+import java.awt.event.*;
+import java.lang.*;;
+class Password_Validation  
+{  
+public static void main(String args[])  
+    {  
+    JFrame f= new JFrame("");  
+    JPasswordField passwordField = new JPasswordField();
+    JLabel label = new JLabel();
+
+    JButton button =  new JButton("Validate");
+    button.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            char pass[] = passwordField.getPassword();
+            if((pass.length)<6)
+            {
+                label.setText("“Password length must be >6 characters”");
+            }
+        }
+    });
+    button.setBounds(100,200,100,30);
+    passwordField.setBounds(100,150,100,30);
+    label.setBounds(64,250,250,30);
+    f.add(button); f.add(passwordField);  f.add(label);
+    f.setSize(400,400);  
+    f.setLayout(null);  
+    f.setVisible(true);  
+    }  
+    }  
+10. WAP to demonstrate the use of WindowAdapter class
+ import java.awt.event.*;
+import javax.swing.*;
+public class test {
+
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("Test");
+    frame.addWindowListener(new WindowAdapter() {
+      public void windowDeactivated(WindowEvent ev) {
+        //frame.dispose();
+        System.out.println("Deactivated");
+      }
+    });
+    frame.setVisible(true);
+  }
+}
+11. WAP to demonstrate the use of InetAddress class and its factory methods
+import java.io.*;  
+import java.net.*;  
+public class test{  
+public static void main(String[] args){  
+try{  
+InetAddress ip=InetAddress.getByName("www.google.com");  
+System.out.println(InetAddress.getLocalHost());
+  
+System.out.println("Host Name: "+ip.getHostName());  
+System.out.println("IP Address: "+ip.getHostAddress());  
+}catch(Exception e){System.out.println(e);}  
+}  
+} 
+
+
+
+
